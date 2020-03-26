@@ -3,15 +3,23 @@ import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      justifyContent: 'space-around',
+      paddingVertical: 70, 
+      justifyContent: "flex-start",
       alignItems: 'center',
       backgroundColor: '#ff512f',
     },
-    welcome: {
+    bodyContainer: {
+        margin: 35,
+        alignItems: "center",
+    },
+    title: {
       fontSize: 40,
       fontWeight: "bold",
       color: "black",
       textAlign: 'center',
+    },
+    header: {
+        fontSize: 30, 
     },
     instructions: {
       textAlign: 'center',
@@ -19,6 +27,7 @@ const styles = StyleSheet.create({
       marginBottom: 5,
     },
     buttonStyle: {
+        marginTop: 20,
         alignItems: "center", 
         justifyContent: "center",
         borderColor: "black",
@@ -30,6 +39,7 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         fontSize: 25,
-    }
+    },
+    
 });
 export default styles;

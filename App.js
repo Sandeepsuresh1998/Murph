@@ -13,6 +13,7 @@ export default class App extends Component {
       totalDuration: 90000,
       timerReset: false,
       stopwatchReset: false,
+      numberSets: 0,
     };
     this.toggleStopwatch = this.toggleStopwatch.bind(this);
   }
@@ -23,14 +24,26 @@ export default class App extends Component {
   render() {
     return (
       <View style={Styles.container}>
-        <Text style={Styles.welcome}>Murph Tracker</Text>
-        <Stopwatch msecs start={this.state.stopwatchStart}
-          options={options}
-          reset={this.state.stopwatchReset}
-        />
-        <TouchableOpacity style={Styles.buttonStyle} onPress={this.toggleStopwatch}>
-          <Text style={Styles.buttonText}>{!this.state.stopwatchStart ? "Start" : "Pause"}</Text>
-        </TouchableOpacity>
+        <Text style={Styles.title}>Murph Tracker</Text>
+
+        {/* Global Time container */}
+        <View style={Styles.bodyContainer}>
+          <Text style={Styles.header}>Global Time</Text>
+          <Stopwatch msecs start={this.state.stopwatchStart}
+            options={options}
+            reset={this.state.stopwatchReset}
+          />
+          <TouchableOpacity style={Styles.buttonStyle} onPress={this.toggleStopwatch}>
+            <Text style={Styles.buttonText}>{!this.state.stopwatchStart ? "Start" : "Pause"}</Text>
+          </TouchableOpacity>
+        </View>
+        
+        {/* Number of sets container */}
+        <View style={Styles.bodyContainer}>
+          <Text style={Styles.header}>Number of Sets: {this.state.numberSets}</Text>
+        </View>
+
+
       </View>
     );
   }
