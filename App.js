@@ -1,38 +1,49 @@
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
-
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' + 'Shake or press menu button for dev menu',
-});
+import { Platform, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import Styles from './Styles/styles.js';
+import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
+import { Header } from 'react-native/Libraries/NewAppScreen';
 
 export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      timerStart: false,
+      stopwatchStart: false,
+      totalDuration: 90000,
+      timerReset: false,
+      stopwatchReset: false,
+    };
+    this.toggleStopwatch = this.toggleStopwatch.bind(this);
+  }
+
+  toggleStopwatch() {
+    this.setState({stopwatchStart: !this.state.stopwatchStart, stopwatchReset: false});
+  }
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+      <View style={Styles.container}>
+        <Text style={Styles.welcome}>Murph Tracker</Text>
+        <Stopwatch msecs start={this.state.stopwatchStart}
+          options={options}
+          reset={this.state.stopwatchReset}
+        />
+        <TouchableOpacity style={Styles.buttonStyle} onPress={this.toggleStopwatch}>
+          <Text style={Styles.buttonText}>{!this.state.stopwatchStart ? "Start" : "Pause"}</Text>
+        </TouchableOpacity>
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
+const options = {
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+    alignSelf: "flex-end",
+    backgroundColor: "#ff512f",
+    alignSelf: "center"
+  }, 
+  text: {
+    fontSize: 20
+  }
+};
+
