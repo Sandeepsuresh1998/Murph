@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import { Directions } from 'react-native-gesture-handler';
 
 const styles = StyleSheet.create({
     container: {
@@ -26,16 +27,32 @@ const styles = StyleSheet.create({
       color: '#333333',
       marginBottom: 5,
     },
-    buttonStyle: {
+    button1: {
         marginTop: 20,
+        marginHorizontal: 10, 
         alignItems: "center", 
         justifyContent: "center",
         borderColor: "black",
         borderWidth: 3, 
-        height: 100, 
-        width: 100,
-        borderRadius: 50,
+        height: 90, 
+        width: 90,
+        borderRadius: 45,
         backgroundColor: "green"
+    },
+    button2: {
+        marginTop: 20,
+        marginHorizontal: 10, 
+        alignItems: "center", 
+        justifyContent: "center",
+        borderColor: "black",
+        borderWidth: 3, 
+        height: 90, 
+        width: 90,
+        borderRadius: 45,
+        backgroundColor: "red"
+    },
+    buttonContainer: {
+        flexDirection: "row",
     },
     buttonText: {
         fontSize: 25,

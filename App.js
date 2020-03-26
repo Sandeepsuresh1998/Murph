@@ -18,6 +18,7 @@ export default class App extends Component {
     };
     this.toggleStopwatch = this.toggleStopwatch.bind(this);
     this.toggleSet = this.toggleSet.bind(this);
+    this.toggleSetReset = this.toggleSetReset.bind(this);
   }
 
   toggleStopwatch() {
@@ -33,6 +34,9 @@ export default class App extends Component {
       this.setState({setFinished: false});
     }
   }
+  toggleSetReset() {
+    this.setState({numberSets: 0});
+  }
   render() {
     return (
       <View style={Styles.container}>
@@ -45,7 +49,7 @@ export default class App extends Component {
             options={options}
             reset={this.state.stopwatchReset}
           />
-          <TouchableOpacity style={Styles.buttonStyle} onPress={this.toggleStopwatch}>
+          <TouchableOpacity style={Styles.button1} onPress={this.toggleStopwatch}>
             <Text style={Styles.buttonText}>{!this.state.stopwatchStart ? "Start" : "Pause"}</Text>
           </TouchableOpacity>
         </View>
@@ -53,10 +57,19 @@ export default class App extends Component {
         {/* Number of sets container */}
         <View style={Styles.bodyContainer}>
           <Text style={Styles.header}>Number of Sets: {this.state.numberSets}</Text>
-          <TouchableOpacity style={Styles.buttonStyle} onPress={this.toggleSet}>
-            <Text style={Styles.buttonText}>{this.state.setFinished ? "Start" : "Finish"}</Text>
-          </TouchableOpacity>
+          <View style={Styles.buttonContainer}>
+            <TouchableOpacity style={Styles.button1} onPress={this.toggleSet}>
+              <Text style={Styles.buttonText}>{this.state.setFinished ? "Start" : "Finish"}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={Styles.button2} onPress={this.toggleSetReset}>
+              <Text style={Styles.buttonText}>Reset</Text>
+            </TouchableOpacity>
+          </View>
+          
+          
         </View>
+
+        
 
 
       </View>
