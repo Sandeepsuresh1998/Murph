@@ -14,12 +14,24 @@ export default class App extends Component {
       timerReset: false,
       stopwatchReset: false,
       numberSets: 0,
+      setFinished: true,
     };
     this.toggleStopwatch = this.toggleStopwatch.bind(this);
+    this.toggleSet = this.toggleSet.bind(this);
   }
 
   toggleStopwatch() {
     this.setState({stopwatchStart: !this.state.stopwatchStart, stopwatchReset: false});
+  }
+  toggleSet(){
+    if(!this.state.setFinished) {
+      this.setState({
+        setFinished: true,
+        numberSets: this.state.numberSets + 1
+      });
+    } else {
+      this.setState({setFinished: false});
+    }
   }
   render() {
     return (
@@ -41,6 +53,9 @@ export default class App extends Component {
         {/* Number of sets container */}
         <View style={Styles.bodyContainer}>
           <Text style={Styles.header}>Number of Sets: {this.state.numberSets}</Text>
+          <TouchableOpacity style={Styles.buttonStyle} onPress={this.toggleSet}>
+            <Text style={Styles.buttonText}>{this.state.setFinished ? "Start" : "Finish"}</Text>
+          </TouchableOpacity>
         </View>
 
 
