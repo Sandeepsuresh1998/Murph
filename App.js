@@ -15,10 +15,13 @@ export default class App extends Component {
       stopwatchReset: false,
       numberSets: 0,
       setFinished: true,
+      mileStarted: false,
     };
     this.toggleStopwatch = this.toggleStopwatch.bind(this);
     this.toggleSet = this.toggleSet.bind(this);
     this.toggleSetReset = this.toggleSetReset.bind(this);
+    this.toggleTimeReset = this.toggleTimeReset.bind(this);
+    this.toggleMileRun = this.toggleMileRun.bind(this);
   }
 
   toggleStopwatch() {
@@ -37,6 +40,15 @@ export default class App extends Component {
   toggleSetReset() {
     this.setState({numberSets: 0});
   }
+
+  toggleTimeReset() {
+    this.setState({stopWatchStart: true, stopwatchReset: true});
+  }
+  
+  toggleMileRun() {
+    this.setState({mileStarted: !this.state.mileStarted});
+  }
+
   render() {
     return (
       <View style={Styles.container}>
@@ -49,9 +61,17 @@ export default class App extends Component {
             options={options}
             reset={this.state.stopwatchReset}
           />
-          <TouchableOpacity style={Styles.button1} onPress={this.toggleStopwatch}>
-            <Text style={Styles.buttonText}>{!this.state.stopwatchStart ? "Start" : "Pause"}</Text>
-          </TouchableOpacity>
+          <View style={Styles.buttonContainer}>
+            <TouchableOpacity style={Styles.button1} onPress={this.toggleStopwatch}>
+              <Text style={Styles.buttonText}>{!this.state.stopwatchStart ? "Start" : "Pause"}</Text>
+            </TouchableOpacity>
+            {!this.state.stopwatchStart
+              ? <TouchableOpacity style={Styles.button2} onPress={this.toggleTimeReset}>
+                  <Text style={Styles.buttonText}>Reset</Text>
+                </TouchableOpacity>
+              : null
+            }
+          </View>
         </View>
         
         {/* Number of sets container */}
@@ -65,13 +85,14 @@ export default class App extends Component {
               <Text style={Styles.buttonText}>Reset</Text>
             </TouchableOpacity>
           </View>
-          
-          
         </View>
-
-        
-
-
+        {/* Mile container */}
+        <View style={Styles.bodyContainer}>
+            <Text style={Styles.header}>Mile Start</Text>
+            <TouchableOpacity style={Styles.button1} onPress={this.toggleMileRun}>
+              <Text style={Styles.buttonText}>{!this.state.mileStarted ? "Start" : "Finish"}</Text>
+            </TouchableOpacity>
+        </View>
       </View>
     );
   }
